@@ -26,9 +26,9 @@ rb_cFile_mkfifo(int argc, VALUE *argv, VALUE self) {
     mode_t perm = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP;
 
 #ifdef rb_check_arity
-    rb_check_arity(argc, 1, 2);
+    argc = rb_check_arity(argc, 1, 2);
     name = argv[0];
-    mode = argv[1];
+    mode = argc > 1 ? argv[1] : Qnil;
 #else
     rb_scan_args(argc, argv, "11", &name, &mode);
 #endif
